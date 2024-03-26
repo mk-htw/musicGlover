@@ -75,6 +75,21 @@ The MusicGlover will then start to recognize the user's gestures and send the co
 - **Device Not Recognized**: Check the Micro-USB connection and ensure the Arduino Nano is powered on.
 - **Gesture Not Recognized**: Recalibrate the gesture model in Edge Impulse and ensure the gestures are distinct and well-trained.
 
+## Sources
+
+- https://www.hackster.io/textzip/gesture-based-media-control-using-nano-33-ble-sense-1420fd
+- https://docs.arduino.cc/hardware/nano-33-ble/
+- https://edge-impulse.gitbook.io/docs
+- https://hwrberlin.github.io/tinyml/ml-mini-project.html
+- https://github.com/witnessmenow/arduino-switcheroonie/blob/master/switcheroonie/switcheroonie.ino
+- https://github.com/T-vK/ESP32-BLE-Keyboard
+- https://github.com/jpconstantineau/BlueMicro_BLE?tab=readme-ov-file
+- https://github.com/bitbank2/BLE_Keyboard/blob/master/BLE_Keyboard.ino
+- https://gist.github.com/NeoCat/b709cdd9899386bf956b01df084c4d7a
+
+- **Device Not Recognized**: Check the Micro-USB connection and ensure the Arduino Nano is powered on.
+- **Gesture Not Recognized**: Recalibrate the gesture model in Edge Impulse and ensure the gestures are distinct and well-trained.
+
 ## Contributing
 
 Contributions to the project are welcome. Please follow the standard fork and pull request workflow. For major changes, please open an issue first to discuss what you would like to change.
