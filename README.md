@@ -4,6 +4,13 @@
 
 This project introduces a novel approach to media control through motion gestures, utilizing an Arduino Nano 33 BLE. Designed for simplicity and efficiency, the device translates specific hand movements into media control actions such as play, pause, volume adjustment, and track navigation. Integrated onto a glove for ease of use and mobility, it leverages machine learning with Edge Impulse to recognize gestures with high accuracy.
 
+## Process
+![Alt processdiagram](./assets/MusicGlover_Diagram.jpg)
+
+The user first needs to start a music app on their device. Either via Voice Commands or by opening the app manually.
+As soon as the music app is running and the MusicGlove is connected, the user can start the MusicGlover by pressing the button on the glove.
+The MusicGlover will then start to recognize the user's gestures and send the corresponding commands to the music app.
+
 ## Features
 
 - **Gesture Recognition**: Utilizes a neural network to interpret hand gestures for media control.
@@ -20,6 +27,8 @@ This project introduces a novel approach to media control through motion gesture
 - A button switch
 - Micro-USB cable for connection to device
 - Jumper wires for button
+
+![Alt hardware-pic](./assets/hardware.jpg)
 
 ## Software Requirements
 
