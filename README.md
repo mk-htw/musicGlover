@@ -78,13 +78,16 @@ The MusicGlover will then start to recognize the user's gestures and send the co
 ## Sources
 
 - https://www.hackster.io/textzip/gesture-based-media-control-using-nano-33-ble-sense-1420fd
+- https://community.alexgyver.ru/threads/ispolzovanie-nano-33-ble-v-kachestve-hid-devajsa-besprovodnoj-klaviatury-nuzhna-pomosch.8110/
 - https://docs.arduino.cc/hardware/nano-33-ble/
+- https://forum.arduino.cc/t/mbed-ble-hid-send-keyboard-pgup-and-pgdn/1045693
 - https://edge-impulse.gitbook.io/docs
 - https://hwrberlin.github.io/tinyml/ml-mini-project.html
 - https://github.com/witnessmenow/arduino-switcheroonie/blob/master/switcheroonie/switcheroonie.ino
 - https://github.com/T-vK/ESP32-BLE-Keyboard
 - https://github.com/jpconstantineau/BlueMicro_BLE?tab=readme-ov-file
 - https://github.com/bitbank2/BLE_Keyboard/blob/master/BLE_Keyboard.ino
+- https://github.com/tcoppex/mbed-ble-hid/blob/master/examples/ble_shining_kb/ble_shining_kb.ino
 - https://gist.github.com/NeoCat/b709cdd9899386bf956b01df084c4d7a
 
 - **Device Not Recognized**: Check the Micro-USB connection and ensure the Arduino Nano is powered on.
