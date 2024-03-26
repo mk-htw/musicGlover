@@ -90,9 +90,6 @@ The MusicGlover will then start to recognize the user's gestures and send the co
 - https://github.com/tcoppex/mbed-ble-hid/blob/master/examples/ble_shining_kb/ble_shining_kb.ino
 - https://gist.github.com/NeoCat/b709cdd9899386bf956b01df084c4d7a
 
-- **Device Not Recognized**: Check the Micro-USB connection and ensure the Arduino Nano is powered on.
-- **Gesture Not Recognized**: Recalibrate the gesture model in Edge Impulse and ensure the gestures are distinct and well-trained.
-
 ## Contributing
 
 Contributions to the project are welcome. Please follow the standard fork and pull request workflow. For major changes, please open an issue first to discuss what you would like to change.
