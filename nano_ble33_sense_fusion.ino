@@ -20,6 +20,7 @@
 #include <Arduino_LPS22HB.h>   //Click here to get the library: https://www.arduino.cc/reference/en/libraries/arduino_lps22hb/
 #include <Arduino_HTS221.h>    //Click here to get the library: https://www.arduino.cc/reference/en/libraries/arduino_hts221/
 #include <Arduino_APDS9960.h>  //Click here to get the library: https://www.arduino.cc/reference/en/libraries/arduino_apds9960/
+#include "PluggableUSBHID.h"
 #include <USBKeyboard.h>
 
 enum sensor_status {
@@ -282,9 +283,8 @@ void loop() {
       return;
     }
 
-    // Initialisiere die Liste (vector) für Gesten
-    // std::vector<std::string> gestures;
-    char gesture = 'a';
+    // Initialisiere die Variable für aufgenommene Geste
+    std::string label = "unknown";
 
     // print the predictions
     ei_printf("Predictions (DSP: %d ms., Classification: %d ms., Anomaly: %d ms.):\r\n",
@@ -295,81 +295,39 @@ void loop() {
 
       // extract the gesture(s) that is classified with precision over 80%
       if (result.classification[ix].value > 0.8) {
-        //   gestures.push_back(result.classification[ix].label);
-        // map gesture to media command
-        // for (const auto& gesture : gestures) {
-        //   switch (result.classification[ix].label) {
-        //     case 'play_pause':
-        //       ei_printf("\nDetected play_pause gesture");
-        //       Keyboard.media_control(KEY_PLAY_PAUSE);
-        //       break;
-        //     case 'volumeDown':
-        //       ei_printf("\nDetected volumeDown gesture");
-        //       Keyboard.media_control(KEY_VOLUME_DOWN);
-        //       break;
-
-        //     case 'volumeUp':
-        //       ei_printf("Detected volumeUp gesture");
-        //       Keyboard.media_control(KEY_VOLUME_UP);
-        //       break;
-
-        //     case 'mute_unmute':
-        //       ei_printf("\nDetected mute_unmute gesture");
-        //       if (!isMuted) {
-        //         Keyboard.media_control(KEY_MUTE);
-        //         isMuted = true;
-        //       } else {
-        //         Keyboard.media_control(KEY_VOLUME_DOWN);
-        //       }
-        //       break;
-
-        //     case 'next':
-        //       ei_printf("\nDetected next gesture");
-        //       Keyboard.media_control(KEY_NEXT_TRACK);
-        //       break;
-
-        //     case 'previous':
-        //       ei_printf("\nDetected previous gesture");
-        //       Keyboard.media_control(KEY_PREVIOUS_TRACK);
-        //       break;
-
-        //     default:
-        //       // Ignore.
-        //       break;
-        //   }
-        //   // }
-        // }
         std::string label = result.classification[ix].label;
-
-        if (label == "play_pause") {
-          ei_printf("\nDetected play_pause gesture");
-          Keyboard.media_control(KEY_PLAY_PAUSE);
-        } else if (label == "volumeDown") {
-          ei_printf("\nDetected volumeDown gesture");
-          Keyboard.media_control(KEY_VOLUME_DOWN);
-        } else if (label == "volumeUp") {
-          ei_printf("\nDetected volumeUp gesture");
-          Keyboard.media_control(KEY_VOLUME_UP);
-        } else if (label == "mute_unmute") {
-          ei_printf("\nDetected mute_unmute gesture");
-          if (!isMuted) {
-            Keyboard.media_control(KEY_MUTE);
-            isMuted = true;
-          } else {
-            Keyboard.media_control(KEY_VOLUME_DOWN);
-          }
-        } else if (label == "next") {
-          ei_printf("\nDetected next gesture");
-          Keyboard.media_control(KEY_NEXT_TRACK);
-        } else if (label == "previous") {
-          ei_printf("\nDetected previous gesture");
-          Keyboard.media_control(KEY_PREVIOUS_TRACK);
-        } else {
-          // Ignore.
-        }
       }
     }
 
+    // map gesture to media command
+    if (label == "play_pause") {
+      ei_printf("\nDetected play_pause gesture\n");
+      Keyboard.media_control(KEY_PLAY_PAUSE);
+    } else if (label == "volumeDown") {
+      ei_printf("\nDetected volumeDown gesture\n");
+      Keyboard.media_control(KEY_VOLUME_DOWN);
+    } else if (label == "volumeUp") {
+      ei_printf("\nDetected volumeUp gesture\n");
+      Keyboard.media_control(KEY_VOLUME_UP);
+    } else if (label == "mute_unmute") {
+      ei_printf("\nDetected mute_unmute gesture\n");
+      if (!isMuted) {
+        ei_printf("\nTry to mute\n");
+        Keyboard.media_control(KEY_MUTE);
+        isMuted = true;
+      } else {
+        ei_printf("\nTry to unmute\n");
+        Keyboard.media_control(KEY_VOLUME_DOWN);
+      }
+    } else if (label == "next") {
+      ei_printf("\nDetected next gesture\n");
+      Keyboard.media_control(KEY_NEXT_TRACK);
+    } else if (label == "previous") {
+      ei_printf("\nDetected previous gesture\n");
+      Keyboard.media_control(KEY_PREVIOUS_TRACK);
+    } else {
+      ei_printf("\nDetected not classified gesture\n");
+    }
 
 
 #if EI_CLASSIFIER_HAS_ANOMALY == 1
