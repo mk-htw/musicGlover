@@ -212,6 +212,9 @@ void setup() {
       }
     }
   }
+
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPin, INPUT_PULLUP);
 }
 
 /**
@@ -234,18 +237,18 @@ void loop() {
 
   buttonState = analogRead(buttonPin);
   if (buttonState == HIGH && !isRecording) {
-    ei_printf("Sampling...\r\n");
-    isRecording = true;
-    ei_printf("Klassifizierungsintervall in Sekunden: %i \n", ((int64_t)EI_CLASSIFIER_INTERVAL_MS * 1000));
 
-    //while(isRecording){
+    ei_printf("Recording...\r\n");
+    isRecording = true;
+    // ei_printf("Klassifizierungsintervall in Sekunden: %i \n", ((int64_t)EI_CLASSIFIER_INTERVAL_MS * 1000));
+
     // Allocate a buffer here for the values we'll read from the sensor
     float buffer[EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE] = { 0 };
 
     for (size_t ix = 0; ix < EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE; ix += EI_CLASSIFIER_RAW_SAMPLES_PER_FRAME) {
+
       // Determine the next tick (and then sleep later)
       int64_t next_tick = (int64_t)micros() + ((int64_t)EI_CLASSIFIER_INTERVAL_MS * 1000);
-      // ei_printf("next_tick is %i \n", next_tick);
 
       for (int i = 0; i < fusion_ix; i++) {
         if (sensors[fusion_sensors[i]].status == INIT) {
@@ -259,12 +262,18 @@ void loop() {
       }
 
       int64_t wait_time = next_tick - (int64_t)micros();
-      // ei_printf("wait_time is %i \n", wait_time);
 
       if (wait_time > 0) {
         delayMicroseconds(wait_time);
       }
+
+      // if (buttonState == LOW && isRecording) {
+      //   ei_printf("Recording ends.\r\n");
+      //   isRecording = false;
+      //   delay(100);
+      // }
     }
+
 
     // Turn the raw buffer in a signal which we can the classify
     signal_t signal;
@@ -334,10 +343,6 @@ void loop() {
     ei_printf("    anomaly score: %.3f\r\n", result.anomaly);
 #endif
     ei_printf("\nPress button to record gesture...\r\n");
-  } else if (buttonState == LOW && isRecording) {
-    ei_printf("Button pressed twice...\r\n");
-    isRecording = false;
-    delay(1000);
   }
 }
 
