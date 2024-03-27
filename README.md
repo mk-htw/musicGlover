@@ -36,6 +36,9 @@ Suites:
 - Arduino IDE
 - Edge Impulse Studio (for gesture training and model generation)
 
+Operation System:
+- Arduino Mbed OS Nano Boards: 4.1.1
+
 Libraries:
 - <USBKeyboard.h>
 - <PluggableUSBHID.h>
@@ -46,26 +49,28 @@ Libraries:
 
 ## Installation
 
-1. **Firmware Setup**:
+1. **Repository Setup**:
    - Download or clone the project repository.
    - Ensure the Arduino IDE is installed on your computer.
    - Open the project in the Arduino IDE.
 
-2. **Model Deployment**:
-   - Train your model using Edge Impulse with the gestures you intend to recognize.
-   - Export the trained model and integrate it into your Arduino project.
+2. **Install OS and Libraries**:
+   - Select Tools -> Board -> Boards Manager. Search for "Arduino Mbed OS Nano Boards" and install.
+   - Select the newly installed Board from Tools -> Board -> Arduino Mbed OS Nano Boards -> Arduino Nano 33 BLE
+   - Install the necessary Arduino libraries from the Library Manager.
+   - Import the included zip from the library folder into the Arduino IDE by choosing Sketch -> Include Library -> Add Zip and select it in the file browser.
 
-3. **Hardware Assembly**:
+4. **Hardware Assembly**:
    - Attach the Arduino Nano 33 BLE to the back of the glove.
    - Connect the button to the designated pins on the Nano.
    - Ensure the Micro-USB cable and jumper wires are securely connected to the Nano and your computer.
 
-4. **Flashing the Firmware**:
+5. **Flashing the Firmware**:
    - Connect the Arduino Nano 33 BLE to your computer.
    - Use the Arduino IDE to compile and upload the firmware to the chipset.
 
-5. **Final Setup**:
-   - Ensure the target media device is connected and recognized by your computer.
+6. **Final Setup**:
+   - Ensure the Arduino device is connected and recognized by your computer.
    - No further software setup is required after the initial installation.
 
 ## Usage
