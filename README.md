@@ -36,7 +36,7 @@ Suites:
 - Arduino IDE
 - Edge Impulse Studio (for gesture training and model generation)
 
-Operation System:
+Operating System:
 - Arduino Mbed OS Nano Boards: 4.1.1
 
 Libraries:
