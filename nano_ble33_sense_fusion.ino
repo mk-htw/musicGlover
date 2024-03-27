@@ -20,7 +20,7 @@
 #include <Arduino_LPS22HB.h>   //Click here to get the library: https://www.arduino.cc/reference/en/libraries/arduino_lps22hb/
 #include <Arduino_HTS221.h>    //Click here to get the library: https://www.arduino.cc/reference/en/libraries/arduino_hts221/
 #include <Arduino_APDS9960.h>  //Click here to get the library: https://www.arduino.cc/reference/en/libraries/arduino_apds9960/
-#include "PluggableUSBHID.h"
+#include <PluggableUSBHID.h>
 #include <USBKeyboard.h>
 
 enum sensor_status {
@@ -343,6 +343,8 @@ void loop() {
     ei_printf("    anomaly score: %.3f\r\n", result.anomaly);
 #endif
     ei_printf("\nPress button to record gesture...\r\n");
+  }else if(buttonState == LOW && isRecording){
+    isRecording = false;
   }
 }
 
