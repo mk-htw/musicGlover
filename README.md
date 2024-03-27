@@ -32,8 +32,17 @@ The MusicGlover will then start to recognize the user's gestures and send the co
 
 ## Software Requirements
 
+Suites:
 - Arduino IDE
 - Edge Impulse Studio (for gesture training and model generation)
+
+Libraries:
+- <USBKeyboard.h>
+- <PluggableUSBHID.h>
+- <Arduino_LSM9DS1.h>
+- <Arduino_LPS22HB.h>  
+- <Arduino_HTS221.h> 
+- <Arduino_APDS9960.h>
 
 ## Installation
 
