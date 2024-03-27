@@ -304,7 +304,7 @@ void loop() {
 
       // extract the gesture(s) that is classified with precision over 80%
       if (result.classification[ix].value > 0.8) {
-        std::string label = result.classification[ix].label;
+        label = result.classification[ix].label;
       }
     }
 
