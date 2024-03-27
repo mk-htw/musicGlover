@@ -1,4 +1,4 @@
-# Motion-Controlled Media Device Documentation
+# MusicGlover - A Motion-Controlled Media Device
 
 ## Overview
 
