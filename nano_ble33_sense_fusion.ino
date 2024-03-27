@@ -327,13 +327,16 @@ void loop() {
       } else {
         ei_printf("\nTry to unmute\n");
         Keyboard.media_control(KEY_VOLUME_DOWN);
+        isMuted = false;
       }
     } else if (label == "next") {
       ei_printf("\nDetected next gesture\n");
       Keyboard.media_control(KEY_NEXT_TRACK);
+      Keyboard.key_code(RIGHT_ARROW);
     } else if (label == "previous") {
       ei_printf("\nDetected previous gesture\n");
       Keyboard.media_control(KEY_PREVIOUS_TRACK);
+      Keyboard.key_code(LEFT_ARROW);
     } else {
       ei_printf("\nDetected not classified gesture\n");
     }
