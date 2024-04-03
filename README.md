@@ -4,6 +4,13 @@
 
 This project introduces a novel approach to media control through motion gestures, utilizing an Arduino Nano 33 BLE. Designed for simplicity and efficiency, the device translates specific hand movements into media control actions such as play, pause, volume adjustment, and track navigation. Integrated onto a glove for ease of use and mobility, it leverages machine learning with Edge Impulse to recognize gestures with high accuracy.
 
+### File structure
+- **assets:** All images used in the README.md
+- **edge_impulse_export:** Exported EdgeImpulse MachineLearning Model as Arduino-Export
+- **libraries:** All libraries used by the sketch
+- **sketch:** Sketch that uses the Model and adds behavior (programm/script for the arduino)
+- **presentation:** Our MusicGlover-Pitch and our final presentation 
+
 ## Process
 ![Alt processdiagram](./assets/MusicGlover_Diagram.jpg)
 
