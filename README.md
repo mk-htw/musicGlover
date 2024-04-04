@@ -6,7 +6,7 @@ This project introduces a novel approach to media control through motion gesture
 
 ### File structure
 - **assets:** All images used in the README.md
-- **edge_impulse_export:** Exported EdgeImpulse MachineLearning Model as Arduino-Export
+- **edge_impulse_export:** Exported EdgeImpulse MachineLearning Model as Arduino-Export for easy flashing the Arduino with it
 - **libraries:** All libraries used by the sketch
 - **sketch:** Sketch that uses the Model and adds behavior (programm/script for the arduino)
 - **presentation:** Our MusicGlover-Pitch and our final presentation 
