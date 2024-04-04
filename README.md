@@ -111,7 +111,7 @@ The model utilizes data from magnetometer, accelerometer, and gyroscope sensors,
 
 **Accuracy and Clustering**
 
-![Alt training-results](./assets/Accuracy.jpeg)
+![Alt training-results](./assets/Training_Results.jpeg)
 
 The model demonstrates a remarkable accuracy of 99.8% in correctly classifying the gestures, with a minimal loss of 0.01. This high level of accuracy, achieved over 30 training cycles and a learning rate of 0.0005, underscores the model's efficiency in distinguishing between the different gestures. The architecture's design allows for clear separation of the six classes in clustering analysis, further evidencing the model's precision. Edge Impulse's performance metrics for on-device deployment indicate an inferencing time of 1ms, with peak RAM usage at 1.4K and flash usage at 16.3K, showcasing the model's suitability for real-time applications on edge devices.
 
