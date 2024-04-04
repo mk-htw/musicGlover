@@ -91,6 +91,30 @@ Libraries:
 3. **Media Control**:
    - Actions like Play/Pause, Skip, Volume Adjustment, and Mute/Unmute will be executed on the connected media device based on the recognized gestures.
 
+## Edge Impulse/Machine Learning Model
+Edge Impulse provides an innovative platform for developing machine learning models tailored for edge devices. In this project, we leverage Edge Impulse to design and train a model for recognizing specific hand gestures, based on data recorded with Edge Impulse through a combination of sensors. This model is then optimized and exported for deployment, allowing for real-time gesture recognition in various applications. 
+
+
+**Data Preparation and Split**
+
+![Alt training-test-split](./assets/Train_Test-Split.png)
+
+For the purpose of training a model to detect hand gestures, we collected a dataset comprising 90 training sets and 50 test sets, achieving an approximate 83% training to 17% test data split. The training data, totaling 9 minutes and 5 seconds, consists of 5-second recordings for each instance. These recordings are labeled with six distinct gestures: mute/unmute, next, play/pause, previous, volume down, and volume up, each representing a specific hand motion. The test data varies in length from 1 to 5 seconds, providing a varied range for model validation.
+
+
+**Model Features and Impulse Design**
+
+![Alt impulse-design](./assets/Impulse_design.png)
+
+The model utilizes data from magnetometer, accelerometer, and gyroscope sensors, focusing on the axes accX, accY, accZ, gyrX, gyrY, gyrZ, magX, magY, magZ. Spectral analysis of these axes forms the basis of our feature extraction, with a 2500ms window size for data processing and a 100ms window increase. This technique ensures comprehensive feature extraction over varying lengths of recordings. The extracted features, obtained through spectral analysis, feed into a neural network comprising an input layer with 54 features, followed by two dense layers with 20 and 10 neurons, respectively, and an output layer corresponding to the six gesture classes.
+
+
+**Accuracy and Clustering**
+
+![Alt training-results](./assets/Accuracy.jpeg)
+
+The model demonstrates a remarkable accuracy of 99.8% in correctly classifying the gestures, with a minimal loss of 0.01. This high level of accuracy, achieved over 30 training cycles and a learning rate of 0.0005, underscores the model's efficiency in distinguishing between the different gestures. The architecture's design allows for clear separation of the six classes in clustering analysis, further evidencing the model's precision. Edge Impulse's performance metrics for on-device deployment indicate an inferencing time of 1ms, with peak RAM usage at 1.4K and flash usage at 16.3K, showcasing the model's suitability for real-time applications on edge devices.
+
 ## Troubleshooting
 
 - **Device Not Recognized**: Check the Micro-USB connection and ensure the Arduino Nano is powered on.
