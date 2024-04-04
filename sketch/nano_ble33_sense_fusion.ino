@@ -287,6 +287,7 @@ void loop() {
     ei_impulse_result_t result = { 0 };
 
     err = run_classifier(&signal, &result, debug_nn);
+    
     if (err != EI_IMPULSE_OK) {
       ei_printf("ERR:(%d)\r\n", err);
       return;
@@ -306,17 +307,18 @@ void loop() {
       if (result.classification[ix].value > 0.8) {
         label = result.classification[ix].label;
       }
+
     }
 
     // map gesture to media command
     if (label == "play_pause") {
       ei_printf("\nDetected play_pause gesture\n");
       Keyboard.media_control(KEY_PLAY_PAUSE);
-    } else if (label == "volumeDown") {
-      ei_printf("\nDetected volumeDown gesture\n");
+    } else if (label == "volume_down") {
+      ei_printf("\nDetected volume_down gesture\n");
       Keyboard.media_control(KEY_VOLUME_DOWN);
-    } else if (label == "volumeUp") {
-      ei_printf("\nDetected volumeUp gesture\n");
+    } else if (label == "volume_up") {
+      ei_printf("\nDetected volume_up gesture\n");
       Keyboard.media_control(KEY_VOLUME_UP);
     } else if (label == "mute_unmute") {
       ei_printf("\nDetected mute_unmute gesture\n");
