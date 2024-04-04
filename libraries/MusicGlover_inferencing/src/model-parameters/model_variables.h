@@ -24,20 +24,19 @@
 
 #include <stdint.h>
 #include "model_metadata.h"
-#include "anomaly_metadata.h"
-#include "tflite-model/tflite_learn_8_compiled.h"
 
+#include "tflite-model/tflite_learn_8_compiled.h"
 #include "edge-impulse-sdk/classifier/ei_model_types.h"
 #include "edge-impulse-sdk/classifier/inferencing_engines/engines.h"
 
-const char* ei_classifier_inferencing_categories[] = { "mute_unmute", "next", "play_pause", "previous", "volumeDown", "volumeUp" };
+const char* ei_classifier_inferencing_categories[] = { "mute_unmute", "next", "play_pause", "previous", "volume_down", "volume_up" };
 
-uint8_t ei_dsp_config_4_axes[] = { 0, 1, 2, 3, 4, 5 };
-const uint32_t ei_dsp_config_4_axes_size = 6;
+uint8_t ei_dsp_config_4_axes[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+const uint32_t ei_dsp_config_4_axes_size = 9;
 ei_dsp_config_spectral_analysis_t ei_dsp_config_4 = {
     4, // uint32_t blockId
     4, // int implementationVersion
-    6, // int length of axes
+    9, // int length of axes
     1.0f, // float scale-axes
     1, // int input-decimation-ratio
     "low", // select filter-type
@@ -59,7 +58,7 @@ const size_t ei_dsp_blocks_size = 1;
 ei_model_dsp_t ei_dsp_blocks[ei_dsp_blocks_size] = {
     { // DSP block 4
         4,
-        36, // output size
+        54, // output size
         &extract_spectral_analysis_features, // DSP function pointer
         (void*)&ei_dsp_config_4, // pointer to config struct
         ei_dsp_config_4_axes, // array of offsets into the input stream, one for each axis
@@ -77,7 +76,6 @@ const ei_config_tflite_eon_graph_t ei_config_tflite_graph_8 = {
     .model_output = &tflite_learn_8_output,
 };
 
-
 const ei_learning_block_config_tflite_graph_t ei_learning_block_config_8 = {
     .implementation_version = 1,
     .classification_mode = EI_CLASSIFIER_CLASSIFICATION_MODE_CLASSIFICATION,
@@ -93,22 +91,9 @@ const ei_learning_block_config_tflite_graph_t ei_learning_block_config_8 = {
     .graph_config = (void*)&ei_config_tflite_graph_8
 };
 
-const ei_learning_block_config_anomaly_kmeans_t ei_learning_block_config_10 = {
-    .implementation_version = 1,
-    .classification_mode = EI_CLASSIFIER_CLASSIFICATION_MODE_ANOMALY_KMEANS,
-    .anom_axis = ei_classifier_anom_axes,
-    .anom_axes_size = 4,
-    .anom_clusters = ei_classifier_anom_clusters,
-    .anom_cluster_count = 32,
-    .anom_scale = ei_classifier_anom_scale,
-    .anom_mean = ei_classifier_anom_mean,
-};
-
-const size_t ei_learning_blocks_size = 2;
+const size_t ei_learning_blocks_size = 1;
 const uint32_t ei_learning_block_8_inputs[1] = { 4 };
 const uint32_t ei_learning_block_8_inputs_size = 1;
-const uint32_t ei_learning_block_10_inputs[1] = { 4 };
-const uint32_t ei_learning_block_10_inputs_size = 1;
 const ei_learning_block_t ei_learning_blocks[ei_learning_blocks_size] = {
     {
         8,
@@ -119,16 +104,6 @@ const ei_learning_block_t ei_learning_blocks[ei_learning_blocks_size] = {
         ei_learning_block_8_inputs,
         ei_learning_block_8_inputs_size,
         6
-    },
-    {
-        10,
-        false,
-        &run_kmeans_anomaly,
-        (void*)&ei_learning_block_config_10,
-        EI_CLASSIFIER_IMAGE_SCALING_NONE,
-        ei_learning_block_10_inputs,
-        ei_learning_block_10_inputs_size,
-        1
     },
 };
 
@@ -149,12 +124,12 @@ const ei_impulse_t impulse_366282_0 = {
     .project_id = 366282,
     .project_owner = "HTW Berlin",
     .project_name = "MusicGlover",
-    .deploy_version = 3,
+    .deploy_version = 4,
 
-    .nn_input_frame_size = 36,
+    .nn_input_frame_size = 54,
     .raw_sample_count = 156,
-    .raw_samples_per_frame = 6,
-    .dsp_input_frame_size = 156 * 6,
+    .raw_samples_per_frame = 9,
+    .dsp_input_frame_size = 156 * 9,
     .input_width = 0,
     .input_height = 0,
     .input_frames = 0,
@@ -173,11 +148,11 @@ const ei_impulse_t impulse_366282_0 = {
     .inferencing_engine = EI_CLASSIFIER_TFLITE,
 
     .sensor = EI_CLASSIFIER_SENSOR_FUSION,
-    .fusion_string = "accX + accY + accZ + gyrX + gyrY + gyrZ",
+    .fusion_string = "accX + accY + accZ + gyrX + gyrY + gyrZ + magX + magY + magZ",
     .slice_size = (156/4),
     .slices_per_model_window = 4,
 
-    .has_anomaly = EI_ANOMALY_TYPE_KMEANS,
+    .has_anomaly = EI_ANOMALY_TYPE_UNKNOWN,
     .label_count = 6,
     .calibration = ei_calibration,
     .categories = ei_classifier_inferencing_categories,
